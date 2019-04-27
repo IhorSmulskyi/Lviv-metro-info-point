@@ -3,7 +3,7 @@ require 'yaml'
 class MetroInfopoint
   def initialize(path_to_timing_file:, path_to_lines_file:)
     @timing_data = YAML.load_file(path_to_timing_file)['timing']
-    puts @lines_data = YAML.load_file(path_to_lines_file)
+    @lines_data = YAML.load_file(path_to_lines_file)
   end
 
   def calculate(from_station:, to_station:)
@@ -20,7 +20,7 @@ class MetroInfopoint
     elsif start < finish
       @timing_data[start...finish].reverse_each { |i| array_of_station.push(i['price']) }
     end
-    puts array_of_station.sum
+    puts "Price your trip #{array_of_station.sum}"
   end
 
   def calculate_time(from_station:, to_station:)
@@ -32,9 +32,9 @@ class MetroInfopoint
     elsif start < finish
       @timing_data[start...finish].reverse_each { |i| array_of_station.push(i['time']) }
     end
-    puts array_of_station.sum
+    puts "Time your trip #{array_of_station.sum}"
   end
 end
 
 info = MetroInfopoint.new(path_to_timing_file: './config/timing1.yml', path_to_lines_file: './config/config.yml')
-info.calculate(from_station: 'shevchenkivska', to_station: 'kiborgiv')
+info.calculate(from_station: 'nezalezhna', to_station: 'shevchenkivska')

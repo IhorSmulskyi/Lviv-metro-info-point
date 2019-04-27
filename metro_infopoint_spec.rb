@@ -5,6 +5,7 @@ path_to_file = "./config/timing#{ENV['VARIANT']}.yml"
 timing_data = YAML.load_file(path_to_file)['timing']
 
 
+
 FROM_TO_PAIRS = [
   { from_station:'shevchenkivska',
     to_station: 'kiborgiv',
